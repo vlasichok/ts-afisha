@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     console.log("form is not valid");
   }
 
+
   validateUserEmail(){
     return this.userEmail.valid || this.userEmail.untouched;
   }
@@ -48,4 +49,6 @@ export class LoginComponent implements OnInit {
   validateLoginForm(){
     return this.loginForm.valid;
   }
+
+
 }
