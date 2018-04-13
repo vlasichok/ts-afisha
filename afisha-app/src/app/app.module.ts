@@ -14,6 +14,8 @@ import { EventDetailsComponent } from './events/event-details.component';
 import {EventService} from "./events/services/event.service";
 import { EventComponent } from './events/event.component';
 import {EventRouteActivatorService} from "./events/services/event-route-activator.service";
+import { ProfileComponent } from './user/profile.component';
+import {UserModule} from "./user/user.module";
 
 @NgModule({
   declarations: [
@@ -38,4 +40,6 @@ import {EventRouteActivatorService} from "./events/services/event-route-activato
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

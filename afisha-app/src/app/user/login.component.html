@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-2"></div>
+    <div class="col-6">
+      <h1 style="text-align: center;">Login</h1>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <hr>
+  <div class="row justify-content-md-center">
+    <div class="col-3"></div>
+    <div class="col-4">
+     <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" autocomplete="off" novalidate>
+        <div class="form-group" [ngClass]="{'invalid': !validateUserEmail()}">
+          <label for="userEmail">User Email:</label>
+          <em *ngIf="!validateUserEmail()">Required</em>
+          <input formControlName="userEmail" name="userEmail" id="userEmail" type="email" class="form-control" placeholder="User Email..." required/>
+        </div>
+        <div class="form-group" [ngClass]="{'invalid': !validateUserPassword()}">
+          <label for="userPassword">Password:</label>
+          <em *ngIf="!validateUserPassword()">Required</em>
+          <input formControlName="userPassword" name="userPassword" id="userPassword" type="password" class="form-control" placeholder="Password..." required/>
+        </div>
+       <div class="buttons">
+          <button [disabled]="!validateLoginForm()" type="submit" class="btn btn-primary">Login</button>
+          <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
+       </div>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>

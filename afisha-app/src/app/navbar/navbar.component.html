@@ -4,7 +4,7 @@
   <button mat-button [matMenuTriggerFor]="animals">Members</button>
 
   <mat-menu #animals="matMenu">
-    <button mat-menu-item>Login</button>
+    <button mat-menu-item [routerLink] = "['/user/login']" >Login</button>
     <button mat-menu-item>Sign up</button>
   </mat-menu>
 </mat-toolbar>
