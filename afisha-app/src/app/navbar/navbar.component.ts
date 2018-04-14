@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PATH} from "../shared/constants/path.constant";
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  path: {};
+
   constructor() { }
 
   ngOnInit() {
+    this.path = PATH;
+    console.log(this.path);
   }
 
 }

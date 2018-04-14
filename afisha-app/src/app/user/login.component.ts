@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {PATH} from "../shared/constants/path.constant";
 
 @Component({
   selector: 'app-login',
@@ -10,24 +11,20 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  private userEmail;
-  private userPassword;
 
-  constructor(private router: Router) {
-
-  }
-
-  ngOnInit() {
-    this.userEmail = new FormControl('',[Validators.required, Validators.email]);
-    this.userPassword = new FormControl('',[Validators.required]);
-    this.loginForm = new FormGroup({
-      userEmail: this.userEmail,
-      userPassword: this.userPassword
+  constructor(private router: Router, @Inject(FormBuilder) formBuilder: FormBuilder) {
+    this.loginForm = formBuilder.group({
+      userEmail: ['', [Validators.required, Validators.email]],
+      userPassword: ['', [Validators.required]]
     });
   }
 
+  ngOnInit() {
+
+  }
+
   cancel(){
-    this.router.navigate(['events']);
+    this.router.navigate([PATH.EVENTS]);
   }
 
   login(loginValues) {
@@ -39,16 +36,14 @@ export class LoginComponent implements OnInit {
 
 
   validateUserEmail(){
-    return this.userEmail.valid || this.userEmail.untouched;
+    return this.loginForm.controls.userEmail.valid || this.loginForm.controls.userEmail.untouched;
   }
 
   validateUserPassword(){
-    return this.userPassword.valid || this.userPassword.untouched;
+    return this.loginForm.controls.userPassword.valid || this.loginForm.controls.userPassword.untouched;
   }
 
   validateLoginForm(){
     return this.loginForm.valid;
   }
-
-
 }

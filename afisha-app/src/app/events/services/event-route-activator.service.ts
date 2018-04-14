@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivate, Router} from "@angular/router";
 import {EventService} from "./event.service";
+import {PATH} from "../../shared/constants/path.constant";
 
 @Injectable()
 export class EventRouteActivatorService implements CanActivate{
@@ -11,9 +12,8 @@ export class EventRouteActivatorService implements CanActivate{
 
   canActivate(route: ActivatedRouteSnapshot){
     const eventExist = !!this.eventService.readEvent(+route.params['id']);
-
     if(!eventExist){
-      this.router.navigate(['/404']);
+      this.router.navigate([PATH.ERROR]);
     } else {
       return eventExist;
     }
