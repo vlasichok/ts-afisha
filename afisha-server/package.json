@@ -1,0 +1,27 @@
+{
+  "name": "afisha-server",
+  "version": "1.0.0",
+  "description": "Afisha API",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vlasichok/ts-afisha.git"
+  },
+  "author": "Vlad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vlasichok/ts-afisha/issues"
+  },
+  "homepage": "https://github.com/vlasichok/ts-afisha#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "mongoose": "^5.0.14"
+  }
+}
