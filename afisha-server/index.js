@@ -5,6 +5,8 @@ const express = require('express'),
 const db = mongoose.connect('mongodb://localhost/eventAPI');
 const Event = require('./models/eventModel');
 const app = express();
+//using bluebird for mongoose promises
+mongoose.Promise = require('bluebird');
 
 let port = process.env.PORT || 3000;
 
