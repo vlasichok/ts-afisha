@@ -13,7 +13,7 @@ import {EventsListComponent} from './events/events-list.component';
 import {EventDetailsComponent} from './events/event-details.component';
 import {EventService} from "./events/services/event.service";
 import {EventComponent} from './events/event.component';
-import {EventRouteActivatorService} from "./events/services/event-route-activator.service";
+import {GuardEventRouteService} from "./shared/guard-event-route.service";
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import {EventRouteActivatorService} from "./events/services/event-route-activato
   ],
   providers: [
     EventService,
-    EventRouteActivatorService
+    GuardEventRouteService
   ],
   bootstrap: [AppComponent]
 })

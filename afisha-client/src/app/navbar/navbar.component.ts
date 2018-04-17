@@ -8,13 +8,12 @@ import {PATH} from "../shared/constants/path.constant";
 })
 export class NavbarComponent implements OnInit {
 
-  path: {};
+  path: Object;
 
   constructor() { }
 
   ngOnInit() {
     this.path = PATH;
-    console.log(this.path);
   }
 
 }

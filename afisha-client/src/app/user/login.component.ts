@@ -29,18 +29,17 @@ export class LoginComponent implements OnInit {
 
   login(loginValues) {
     if(this.validateLoginForm()){
-      console.log(loginValues);
+      //call method to login the user
     }
     console.log("form is not valid");
   }
 
-
-  validateUserEmail(){
-    return this.loginForm.controls.userEmail.valid || this.loginForm.controls.userEmail.untouched;
-  }
-
-  validateUserPassword(){
-    return this.loginForm.controls.userPassword.valid || this.loginForm.controls.userPassword.untouched;
+  validateInputField(inputName){
+    if(inputName === 'userEmail') {
+        return this.loginForm.controls.userEmail.valid || this.loginForm.controls.userEmail.untouched;
+    } else {
+        return this.loginForm.controls.userPassword.valid || this.loginForm.controls.userPassword.untouched;
+    }
   }
 
   validateLoginForm(){

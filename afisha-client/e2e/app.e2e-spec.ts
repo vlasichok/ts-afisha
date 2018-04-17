@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('afisha-app App', () => {
+describe('afisha-client App', () => {
   let page: AppPage;
 
   beforeEach(() => {
