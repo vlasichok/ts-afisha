@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {IEvent} from "./event.model";
 
 @Injectable()
@@ -7,7 +7,7 @@ export class EventService {
   constructor() {
 
   }
-
+  
   getEvents(): IEvent[]{
     return EVENTS;
   }
@@ -16,21 +16,21 @@ export class EventService {
     return EVENTS.find(event => event.id === id);
   }
 
-  createEvent(event: IEvent){
+  createEvent(event: IEvent): void{
     EVENTS.push(event);
   }
 
-  updateEvent(event: IEvent){
+  updateEvent(event: IEvent): void{
     let index = EVENTS.findIndex(e => e.id === event.id);
     EVENTS[index] = event;
   }
 
-  searchEvent(searchTerm: string) {
-
+  searchEvent(searchTerm: string): IEvent[] {
+    //@TODO implement logic for searching events
+    return [];
   }
 }
 
-// here we say that our EVETS is of type IEvent array
 const EVENTS: IEvent[] = [
   {
     id: 1,

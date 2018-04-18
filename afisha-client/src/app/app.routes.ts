@@ -2,7 +2,7 @@ import {Routes} from "@angular/router";
 import {Error404Component} from "./error/error404.component";
 import {EventsListComponent} from "./events/events-list.component";
 import {EventComponent} from "./events/event.component";
-import {GuardEventRouteService} from "./shared/guard-event-route.service";
+import {GuardEventRouteService} from "./shared/guards/guard-event-route.service";
 import {PATH} from "./shared/constants/path.constant";
 
 export const appRoutes: Routes = [

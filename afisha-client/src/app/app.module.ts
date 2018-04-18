@@ -13,7 +13,7 @@ import {EventsListComponent} from './events/events-list.component';
 import {EventDetailsComponent} from './events/event-details.component';
 import {EventService} from "./events/services/event.service";
 import {EventComponent} from './events/event.component';
-import {GuardEventRouteService} from "./shared/guard-event-route.service";
+import {GuardEventRouteService} from "./shared/guards/guard-event-route.service";
 
 @NgModule({
   declarations: [
