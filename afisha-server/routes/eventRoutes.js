@@ -1,10 +1,11 @@
 const express = require('express');
+const Event = require('../models/eventModel');
 
-
-const routes = (Event) => {
+//@TODO migrate the logic of Event interaction to eventController
+const eventRoutes = () => {
 
     const eventRouter = express.Router();
-
+    
     eventRouter.route('/')
         .get((req, res) =>{
             Event.find((err, events) => {
@@ -77,4 +78,4 @@ const updateEvent = (newEventData, event) =>{
     }
 };
 
-module.exports = routes;
+module.exports = eventRoutes();

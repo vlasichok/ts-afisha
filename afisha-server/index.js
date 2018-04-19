@@ -1,11 +1,10 @@
 const express = require('express'),
-    mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+      mongoose = require('mongoose'),
+      bodyParser = require('body-parser'),
+      indexRoutes = require('./routes/indexRoutes');
 
 const db = mongoose.connect('mongodb://localhost/eventAPI');
-const Event = require('./models/eventModel');
 const app = express();
-//using bluebird for mongoose promises
 mongoose.Promise = require('bluebird');
 
 let port = process.env.PORT || 3000;
@@ -13,12 +12,10 @@ let port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-const eventRouter = require('./routes/eventRoutes')(Event);
+app.use('/api', indexRoutes);
 
-app.use('/api/events', eventRouter);
-
-app.get('/', (req, res) => {
-    res.send("Hello world");
+app.get('/*', (req, res) => {
+    res.redirect('/api');
 });
 
 app.listen(port, () => {
