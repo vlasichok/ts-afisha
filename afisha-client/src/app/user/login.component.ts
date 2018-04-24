@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   cancel(): void{
-    this.router.navigate([PATH.EVENTS]);
+    this.router.navigate([PATH.SEARCH]);
   }
 
   login(loginValues) {

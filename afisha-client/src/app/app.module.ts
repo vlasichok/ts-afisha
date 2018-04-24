@@ -14,6 +14,7 @@ import {EventDetailsComponent} from './events/event-details.component';
 import {EventService} from "./events/services/event.service";
 import {EventComponent} from './events/event.component';
 import {GuardEventRouteService} from "./shared/guards/guard-event-route.service";
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {GuardEventRouteService} from "./shared/guards/guard-event-route.service"
     NavbarComponent,
     EventsListComponent,
     EventDetailsComponent,
-    EventComponent
+    EventComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
