@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {PATH} from "../shared/constants/path.constant";
 
 @Component({
   selector: 'app-event-details',
@@ -7,11 +8,12 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class EventDetailsComponent implements OnInit {
   @Input() event;
+  path: {};
 
   constructor() { }
 
   ngOnInit() {
-
+    this.path = PATH;
   }
 
 }

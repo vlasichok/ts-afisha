@@ -1,5 +1,5 @@
 {
-  "extends": "../../afisha-client/tsconfig.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/spec",
     "baseUrl": "./",
