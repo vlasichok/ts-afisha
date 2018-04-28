@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PATH} from "../shared/constants/path.constant";
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+  path: Object;
+
   constructor() { }
 
   ngOnInit() {
-
+    this.path = PATH;
   }
 }

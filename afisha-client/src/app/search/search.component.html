@@ -1,19 +1,15 @@
 <div class="search-body">
   <div class="container">
     <nav>
-      <div class="row">
-        <img src="../../assets/logo.png" alt="Omnifood logo" class="logo">
-        <ul class="search-nav">
-          <li><a href="#about" class="js--scroll-to-about">About us</a></li>
-          <li><a href="#partners" class="js--scroll-to-partners">Our Partners</a></li>
-          <li><a href="#team" class="js--scroll-to-team">Our Team</a></li>
-          <li><a href="#contact" class="js--scroll-to-contact">Contact us</a></li>
-        </ul>
-        <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
-      </div>
+      <img src="../../assets/logo.png" alt="Omnifood logo" class="logo">
+          <ul class="search-nav">
+            <li><a [routerLink] = "['/', path.ABOUT]">About us</a></li>
+            <li><a [routerLink] = "['/', path.EVENTS]">List of events</a></li>
+            <li><a [routerLink] = "['/', path.USER, path.LOGIN]">Member</a></li>
+          </ul>
     </nav>
   </div>
-  <div class="container">
+  <div class="container search-container">
     <div class="row">
       <div class="col-lg-12">
         <div class="content">
@@ -29,6 +25,31 @@
                 <button class="btn btn-secondary btn-large search-btn" type="submit">Search</button>
               </form>
             </div>
+          </div>
+          <div class="hashtags">
+            <ul>
+              <li>
+                #Odessa
+              </li>
+              <li>
+                #Music Festival
+              </li>
+              <li>
+                #Rock concert
+              </li>
+              <li>
+                #Night clubs
+              </li>
+              <li>
+                #Odessa
+              </li>
+              <li>
+                #Music Festival
+              </li>
+              <li>
+                #Rock concert
+              </li>
+            </ul>
           </div>
         </div>
       </div>
