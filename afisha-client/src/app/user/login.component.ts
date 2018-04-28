@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
 
   }
 
+  /**
+   * This function redirects to the default path /search
+   */
   cancel(): void{
     this.router.navigate([PATH.SEARCH]);
   }
