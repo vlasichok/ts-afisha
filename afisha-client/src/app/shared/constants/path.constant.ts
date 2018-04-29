@@ -4,5 +4,7 @@ export const PATH = {
   ERROR: '404',
   USER: 'user',
   ROOT: '',
-  LOGIN: 'login'
+  LOGIN: 'login',
+  SEARCH: 'search',
+  ABOUT: 'about'
 };
