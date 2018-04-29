@@ -23,8 +23,11 @@ export class LoginComponent implements OnInit {
 
   }
 
+  /**
+   * This function redirects to the default path /search
+   */
   cancel(): void{
-    this.router.navigate([PATH.EVENTS]);
+    this.router.navigate([PATH.SEARCH]);
   }
 
   login(loginValues) {
@@ -33,6 +36,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /**
+   * This function is called from the login form, and validates the fields
+   * @param inputName
+   * @returns {boolean}
+   */
   validateInputField(inputName): boolean{
       return this.loginForm.controls[inputName].valid || this.loginForm.controls[inputName].untouched;
   }
