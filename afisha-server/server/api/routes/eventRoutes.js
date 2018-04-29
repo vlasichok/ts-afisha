@@ -1,5 +1,6 @@
 const express = require('express');
 const Event = require('../models/eventModel');
+const eventController = require('../controllers/eventController');
 
 //@TODO migrate the logic of Event interaction to eventController
 const eventRoutes = () => {
@@ -7,75 +8,31 @@ const eventRoutes = () => {
     const eventRouter = express.Router();
     
     eventRouter.route('/')
-        .get((req, res) =>{
-            Event.find((err, events) => {
-                if(err){
-                    res.status(500).send(err);
-                } else {
-                    res.json(events);
-                }
-            });
+        .get((req, res, next) =>{
+            eventController.getEvents(req, res, next);
         })
-        .post((req, res) => {
-            let event = new Event(req.body);
-            event.save((err)=> {
-                if(err){
-                    res.status(500).send(err);
-                } else {
-                    res.json(req.event);
-                }
-            });
-            res.status(201).send(event);
+        .post((req, res, next) => {
+            eventController.createEvent(req, res, next);
+            res.status(201).send(res.json);
         });
 
     //middleware that get the event for DB and pass it in req
     eventRouter.use('/:id', (req, res, next) => {
-        Event.findById(req.params.id, (err, event) => {
-            if (err) {
-                res.status(500).send(err);
-            } else if (event) {
-                req.event = event;
-                next();
-            } else {
-                res.status(404).send('No event found with this ID');
-            }
-        });
+        eventController.findEventById(req, res, next, req.params.id);
     });
 
     eventRouter.route('/:id')
-        .get((req, res) => {
-            res.json(req.event);
+        .get((req, res, next) => {
+            eventController.getOneEvent(req, res, next);
         })
-        .put((req, res) => {
-            updateEvent(req.body, req.event);
-            req.event.save((err)=> {
-                if(err){
-                    res.status(500).send(err);
-                } else {
-                    res.json(req.event);
-                }
-            });
-
+        .put((req, res, next) => {
+            eventController.updateEvent(req, res, next);
         })
         .delete((req, res) => {
-            req.event.remove((err) => {
-                if(err){
-                    res.status(500).send(err);
-                } else {
-                    res.status(204).send('Removed successfully');
-                }
-            });
+            eventController.deleteEvent(req, res, next);
         });
 
     return eventRouter;
-};
-
-const updateEvent = (newEventData, event) =>{
-    for(let i in event){
-        if(newEventData[i] && event[i]) {
-            event[i] = newEventData[i];
-        }
-    }
 };
 
 module.exports = eventRoutes();

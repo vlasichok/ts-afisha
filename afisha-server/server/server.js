@@ -7,7 +7,6 @@ const error = require('./middleware/errorMiddleware');
 require('./middleware/appMiddleware')(app);
 //setup the api router
 app.use('/api', api);
-
 //set up global error handling
 app.use(error());
 //export the app for testing

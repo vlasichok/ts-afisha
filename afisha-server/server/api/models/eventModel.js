@@ -35,12 +35,9 @@ const eventModel = new mongoose.Schema({
         type: [Buffer]
     },
     author: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Author",
-            required: true
-        },
-        authorName: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Author",
+        required: true
     },
     comments: [
         {

@@ -13,13 +13,9 @@ const Comment = new mongoose.Schema({
         default: Date.now
     },
     authorOfComment: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-            required: true
-        },
-        authorName: String,
-        avatar: Buffer
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     }
 });
 

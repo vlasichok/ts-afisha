@@ -13,12 +13,8 @@ Event.create({
     views: 129,
     attends: 123123,
     images: 123123123,
-    author: {
-        id: new mongoose.Types.ObjectId,
-        authorName: "asd"
-    },
-    comments: [
-    ]
+    author: new mongoose.Types.ObjectId,
+    comments: [ ]
 }).then((err, event) => {
     console.log(err, event);
 });
