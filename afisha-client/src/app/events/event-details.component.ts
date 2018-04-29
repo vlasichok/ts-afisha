@@ -8,8 +8,8 @@ import {PATH} from "../shared/constants/path.constant";
 })
 export class EventDetailsComponent implements OnInit {
   @Input() event;
-  path: {};
-
+  
+  path: Object;
   constructor() { }
 
   ngOnInit() {

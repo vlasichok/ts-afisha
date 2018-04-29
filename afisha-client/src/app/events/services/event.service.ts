@@ -7,7 +7,7 @@ export class EventService {
   constructor() {
 
   }
-  
+
   getEvents(): IEvent[]{
     return EVENTS;
   }
