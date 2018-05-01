@@ -15,6 +15,11 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
-    this.event = this.eventService.readEvent(+id);
+    this.eventService.getOneEvent(id)
+      .subscribe(
+        (event: IEvent) => this.event = event,
+        (error: any) => console.log(error),
+        () => console.log("The event with id " + id + " retrieved")
+      )
   }
 }

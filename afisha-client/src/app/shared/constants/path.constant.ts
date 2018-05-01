@@ -6,5 +6,6 @@ export const PATH = {
   ROOT: '',
   LOGIN: 'login',
   SEARCH: 'search',
-  ABOUT: 'about'
+  ABOUT: 'about',
+  API: 'http://localhost:8800/api/'
 };

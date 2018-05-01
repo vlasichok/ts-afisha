@@ -11,7 +11,7 @@ export class GuardEventRouteService implements CanActivate{
   }
 
   canActivate(route: ActivatedRouteSnapshot){
-    const eventExist = !!this.eventService.readEvent(+route.params['id']);
+    const eventExist = !!this.eventService.getOneEvent(+route.params['id']);
     if(!eventExist){
       this.router.navigate([PATH.ERROR]);
     } else {

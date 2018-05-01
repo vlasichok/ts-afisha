@@ -14,6 +14,9 @@ const eventModel = new mongoose.Schema({
     date: {
         type: Date
     },
+    location: {
+        type: String  
+    },
     createdAt: {
         type: Date,
         default: Date.now

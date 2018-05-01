@@ -5,7 +5,7 @@ const config = {
     dev: 'development',
     test: 'testing',
     prod: 'production',
-    port: process.env.PORT || 4200,
+    port: process.env.PORT || 8800,
     dataBaseUrl: process.env.DATABASEURL || 'mongodb://localhost/eventAPI'
 };
 
