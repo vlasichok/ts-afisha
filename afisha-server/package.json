@@ -4,7 +4,9 @@
   "description": "Afisha API",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node index.js",
+    "test": "test",
+    "seed": "node ./mongodbMigration/seeder.js"
   },
   "repository": {
     "type": "git",
@@ -19,8 +21,11 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "colors": "^1.2.1",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "mongoose": "^5.0.14",
+    "mongoose-seed": "^0.4.1",
     "npm-scripts": "^1.4.0"
   }
 }

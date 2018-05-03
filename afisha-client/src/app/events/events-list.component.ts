@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {EventService} from "./services/event.service";
-import {IEvent} from "./services/event.model";
+import {EventService} from "../shared/services/event.service";
+import {IEvent} from "../shared/models/event.model";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-events-list',
@@ -15,7 +16,11 @@ export class EventsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.events = this.eventService.getEvents();
+    this.eventService.getEvents()
+      .subscribe(
+        (events: IEvent[]) => this.events = events,
+        (error: HttpErrorResponse) => console.log(error)
+        );
   }
 
 }

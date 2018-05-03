@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {EventService} from "./services/event.service";
-import {IEvent} from "./services/event.model";
+import {EventService} from "../shared/services/event.service";
+import {IEvent} from "../shared/models/event.model";
 import {ActivatedRoute} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-event',
@@ -15,6 +16,10 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
-    this.event = this.eventService.readEvent(+id);
+    this.eventService.getOneEvent(id)
+      .subscribe(
+        (event: IEvent) => this.event = event,
+        (error: HttpErrorResponse) => console.log(error)
+      )
   }
 }
