@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {EventService} from "../shared/services/event.service";
 import {IEvent} from "../shared/models/event.model";
 import {ActivatedRoute} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-event',
@@ -18,8 +19,7 @@ export class EventComponent implements OnInit {
     this.eventService.getOneEvent(id)
       .subscribe(
         (event: IEvent) => this.event = event,
-        (error: any) => console.log(error),
-        () => console.log("The event with id " + id + " retrieved")
+        (error: HttpErrorResponse) => console.log(error)
       )
   }
 }

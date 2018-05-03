@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {IEvent} from "../models/event.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {PATH} from "../constants/path.constant";
+import {environment} from "../../../environments/environment";
 
 
 @Injectable()
@@ -13,39 +13,23 @@ export class EventService {
   }
 
   getEvents(): Observable<IEvent[]>{
-    return this.http.get<IEvent[]>(PATH.API + 'events', {
-      headers: new HttpHeaders({
-        'Accept': 'application/json'
-      })
-    });
+    return this.http.get<IEvent[]>( environment.apiUrl + 'events');
   }
 
   getOneEvent(id: number): Observable<IEvent> {
-    return this.http.get<IEvent>(PATH.API + 'events/' + id, {
-      headers: new HttpHeaders({
-        'Accept' : 'application/json'
-      })
-    });
+    return this.http.get<IEvent>(environment.apiUrl + 'events/' + id);
   }
 
   createEvent(event: IEvent): Observable<IEvent>{
-    return this.http.post<IEvent>(PATH.API + 'event', JSON.stringify(event), {
-      headers: new HttpHeaders({
-        'Content-Type' : 'application/json'
-      })
-    });
+    return this.http.post<IEvent>(environment.apiUrl + 'event', event);
   }
 
-  updateEvent(event: IEvent, id: string): Observable<void>{
-    return this.http.put<void>(PATH.API + 'event/' + id, JSON.stringify(event), {
-      headers: new HttpHeaders({
-        'Content-Type' : 'application/json'
-      })
-    });
+  updateEvent(event: IEvent, id: string){
+    return this.http.put<void>(environment.apiUrl + 'event/' + id, event);
   }
 
-  deleteEvent(id: string): Observable<void>{
-    return this.http.delete<void>(PATH.API + 'events/' + id);
+  deleteEvent(id: string){
+    return this.http.delete<void>(environment.apiUrl + 'events/' + id);
   }
 
 }

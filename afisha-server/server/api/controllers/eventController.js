@@ -1,5 +1,4 @@
 const Event = require('../models/eventModel');
-const _ = require('lodash');
 
 const eventController = {
     findEventById: (req, res, next, id) => {
@@ -35,7 +34,7 @@ const eventController = {
     updateEvent: (req, res, next) => {
         let event = req.event;
         let update = req.body;
-        _.merge(event, update);
+        Object.assign(event, update);
 
         event.save((error, updatedEvent) => {
             if(error) {

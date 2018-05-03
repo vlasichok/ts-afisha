@@ -1,4 +1,3 @@
-const _ = require('lodash');
 //default config object for out api
 const config = {
     /* here goes NODE_ENV values */
@@ -23,4 +22,4 @@ try {
     envConfig = {};
 }
 
-module.exports = _.merge(config, envConfig);
+module.exports = Object.assign(config, envConfig);

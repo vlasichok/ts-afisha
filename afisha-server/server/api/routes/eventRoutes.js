@@ -1,5 +1,4 @@
 const express = require('express');
-const Event = require('../models/eventModel');
 const eventController = require('../controllers/eventController');
 
 //@TODO migrate the logic of Event interaction to eventController
@@ -13,7 +12,6 @@ const eventRoutes = () => {
         })
         .post((req, res, next) => {
             eventController.createEvent(req, res, next);
-            res.status(201).send(res.json);
         });
 
     //middleware that get the event for DB and pass it in req
