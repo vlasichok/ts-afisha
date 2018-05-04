@@ -1,4 +1,6 @@
 const Event = require('../models/eventModel');
+const ErrorBuilder = require('../errors/errorBuilder');
+const ERROR_LIST = require('../errors/errorList');
 
 const eventController = {
     findEventById: (req, res, next, id) => {
@@ -7,7 +9,7 @@ const eventController = {
             .exec()
             .then((event) => {
                 if (!event) {
-                    next(new Error('No event with ' + id + ' is found'));
+                    return res.status(404).json(ErrorBuilder(404, ERROR_LIST.NOT_FOUND));
                 } else {
                     //we bind the event to the req and call next
                     //so that we can then use it for get, delete or put methods
@@ -15,49 +17,48 @@ const eventController = {
                     next();
                 }
             }, (error) => {
-                next(error);
+                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
             });
     },
-    getEvents: (req, res, next) => {
+    getEvents: (req, res) => {
         Event.find({})
             .populate('Author Comments')
             .exec()
             .then((events) => {
-                res.json(events);
+                return res.status(200).json(events);
             }, (error) => {
-                next(error);
+                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
             });
     },
-    getOneEvent: (req, res, next) => {
-        res.json(req.event); //req.event is passed thought next from "findEventById"
+    getOneEvent: (req, res) => {
+        return res.status(200).json(req.event); //req.event is passed thought next from "findEventById"
     },
-    updateEvent: (req, res, next) => {
+    updateEvent: (req, res) => {
         let event = req.event;
         let update = req.body;
         Object.assign(event, update);
-
         event.save((error, updatedEvent) => {
             if(error) {
-                next(error);
+                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
             } else {
-                res.json(updatedEvent);
+                return res.status(200).json(updatedEvent);
             }
         })
     },
-    createEvent: (req, res, next) => {
+    createEvent: (req, res) => {
         Event.create(req.body)
             .then((event) => {
-                res.json(event);
+                return res.send(201).json(event);
             }, (error) => {
-                next(error);
+                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
             });
     },
-    deleteEvent: (req, res, next) => {
+    deleteEvent: (req, res) => {
         req.event.remove((error, removedEvent) => {
             if(error){
-                next(error);
+                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
             } else {
-                res.json(removedEvent);
+                return res.send(200).end();
             }
         });
     }
