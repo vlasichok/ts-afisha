@@ -1,23 +1,18 @@
 const express = require('express');
 const eventController = require('../controllers/eventController');
 
-const eventRoutes = () => {
+const eventRouter = express.Router();
 
-    const eventRouter = express.Router();
-    
-    eventRouter.route('/')
-        .get(eventController.getEvents)
-        .post(eventController.createEvent);
+eventRouter.route('/')
+    .get(eventController.getEvents)
+    .post(eventController.createEvent);
 
-    //middleware that get the event for DB and pass it in req
-    eventRouter.use('/:id', eventController.findEventById);
+//middleware that get the event for DB and pass it in req
+eventRouter.use('/:id', eventController.findEventById);
 
-    eventRouter.route('/:id')
-        .get(eventController.getOneEvent)
-        .put(eventController.updateEvent)
-        .delete(eventController.deleteEvent);
+eventRouter.route('/:id')
+    .get(eventController.getOneEvent)
+    .put(eventController.updateEvent)
+    .delete(eventController.deleteEvent);
 
-    return eventRouter;
-};
-
-module.exports = eventRoutes();
+module.exports = eventRouter;

@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const eventRoutes = require('./routes/eventRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 //api router will mount other routers used in the API
 router.use('/events', eventRoutes);
+router.use('/users', userRoutes);
 
 
 router.get('/', (req, res) => {

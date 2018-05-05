@@ -3,8 +3,8 @@ const ErrorBuilder = require('../errors/errorBuilder');
 const ERROR_LIST = require('../errors/errorList');
 
 const eventController = {
-    findEventById: (req, res, next, id) => {
-        Event.findById(id)
+    findEventById: (req, res, next) => {
+        Event.findById(req.params.id)
             .populate('Author Comments')
             .exec()
             .then((event) => {
@@ -54,7 +54,7 @@ const eventController = {
             });
     },
     deleteEvent: (req, res) => {
-        req.event.remove((error, removedEvent) => {
+        req.event.remove((error) => {
             if(error){
                 return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
             } else {

@@ -5,7 +5,11 @@ const config = {
     test: 'testing',
     prod: 'production',
     port: process.env.PORT || 8800,
-    dataBaseUrl: process.env.DATABASEURL || 'mongodb://localhost/eventAPI'
+    dataBaseUrl: process.env.DATABASEURL || 'mongodb://localhost/eventAPI',
+    expireTime: 24 * 60, //1 day
+    secrets: {
+        jwt: process.env.JWT || 'hooters'
+    }
 };
 
 // check if the NODE_ENV was set, default is dev

@@ -5,6 +5,7 @@ export const PATH = {
   USER: 'user',
   ROOT: '',
   LOGIN: 'login',
+  REGISTER: 'register',
   SEARCH: 'search',
   ABOUT: 'about'
 };
