@@ -6,28 +6,16 @@ const eventRoutes = () => {
     const eventRouter = express.Router();
     
     eventRouter.route('/')
-        .get((req, res) =>{
-            eventController.getEvents(req, res);
-        })
-        .post((req, res) => {
-            eventController.createEvent(req, res);
-        });
+        .get(eventController.getEvents)
+        .post(eventController.createEvent);
 
     //middleware that get the event for DB and pass it in req
-    eventRouter.use('/:id', (req, res, next) => {
-        eventController.findEventById(req, res, next, req.params.id);
-    });
+    eventRouter.use('/:id', eventController.findEventById);
 
     eventRouter.route('/:id')
-        .get((req, res) => {
-            eventController.getOneEvent(req, res);
-        })
-        .put((req, res) => {
-            eventController.updateEvent(req, res);
-        })
-        .delete((req, res) => {
-            eventController.deleteEvent(req, res);
-        });
+        .get(eventController.getOneEvent)
+        .put(eventController.updateEvent)
+        .delete(eventController.deleteEvent);
 
     return eventRouter;
 };
