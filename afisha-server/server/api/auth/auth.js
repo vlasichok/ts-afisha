@@ -1,16 +1,20 @@
 const User = require('../models/userModel');
 const ErrorBuilder = require('../errors/errorBuilder');
 const ERROR_LIST = require('../errors/errorList');
-const jwt = require('jwt-simple');
+const jwt = require('jsonwebtoken');
 const config = require('../../config/config');
 const bcrypt = require('bcrypt-nodejs');
+
+const createAndSendToken = (user, res) =>{
+    const payload = { sub: user._id };
+    const token = jwt.sign(payload, config.secrets.jwt, { expiresIn: config.expireTime });
+    return res.status(201).send({ token: token });
+};
 
 const registerUser = (req, res) => {
     User.create(req.body)
         .then((user) => {
-            const payload = { sub: user._id };
-            const token = jwt.encode(payload, config.secrets.jwt);
-            return res.status(201).send({ token: token });
+            createAndSendToken(user, res);
         }, (error) => {
             return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
         });
@@ -31,10 +35,7 @@ const loginUser = (req, res) => {
             if(!isMatch){
                 return res.status(401).json(ErrorBuilder(401, ERROR_LIST.INVALID_CREDENTIALS));
             }
-            const payload = { sub: user._id };
-            const token = jwt.encode(payload, config.secrets.jwt);
-
-            res.status(200).send({ token: token });
+            createAndSendToken(user, res);
         });
     };
 

@@ -22,7 +22,7 @@ export class AuthService {
   registerUser(registerValues){
     return this.http.post<IToken>(environment.apiUrl + 'register', registerValues)
       .subscribe(
-        (token) => { this.saveToken(token) },
+        (token) => { localStorage.setItem(this.TOKEN_KEY, token.token) },
         (error: HttpErrorResponse) => console.log(error)
       );
   }
@@ -30,7 +30,7 @@ export class AuthService {
   loginUser(loginValues){
     return this.http.post<IToken>(environment.apiUrl + 'login', loginValues)
       .subscribe(
-        (token) => { this.saveToken(token) },
+        (token) => { localStorage.setItem(this.TOKEN_KEY, token.token) },
         (error: HttpErrorResponse) => console.log(error)
       );
   }
@@ -38,9 +38,4 @@ export class AuthService {
   logoutUser(){
     localStorage.removeItem(this.TOKEN_KEY);
   }
-
-  saveToken(token){
-    localStorage.setItem(this.TOKEN_KEY, token.token);
-  }
-
 }

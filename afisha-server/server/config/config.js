@@ -6,7 +6,7 @@ const config = {
     prod: 'production',
     port: process.env.PORT || 8800,
     dataBaseUrl: process.env.DATABASEURL || 'mongodb://localhost/eventAPI',
-    expireTime: 24 * 60, //1 day
+    expireTime: 30, //1 day
     secrets: {
         jwt: process.env.JWT || 'hooters'
     }
