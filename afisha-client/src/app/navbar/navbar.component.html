@@ -14,8 +14,10 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
-    <button class="btn my-2 my-sm-0" [routerLink] = "[path.USER, path.LOGIN]">Login</button>
-    <button class="btn my-2 my-sm-0" [routerLink] = "[path.USER, path.REGISTER]">Register</button>
+    <button class="btn my-2 my-sm-0" *ngIf="!authService.isAuthenticated" [routerLink] = "[path.USER, path.LOGIN]">Login</button>
+    <button class="btn my-2 my-sm-0" *ngIf="!authService.isAuthenticated" [routerLink] = "[path.USER, path.REGISTER]">Register</button>
+    <button class="btn my-2 my-sm-0" *ngIf="authService.isAuthenticated"  (click)="authService.logoutUser()">Logout</button>
+
   </div>
   </div>
 </nav>

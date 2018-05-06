@@ -15,7 +15,9 @@ import {EventService} from "./shared/services/event.service";
 import {EventComponent} from './events/event.component';
 import {GuardEventRouteService} from "./shared/guards/guard-event-route.service";
 import {SearchComponent} from './search/search.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptorService} from "./shared/services/auth-interceptor.service";
+import {AuthService} from "./shared/services/auth.service";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,13 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   providers: [
     EventService,
-    GuardEventRouteService
+    GuardEventRouteService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

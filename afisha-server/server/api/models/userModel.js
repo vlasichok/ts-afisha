@@ -42,6 +42,7 @@ User.pre('save', function (next) {
         return next();
     }
 
+
     bcrypt.genSalt(10, (error, salt) => {
         if(error){
             return next(error);

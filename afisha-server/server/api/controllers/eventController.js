@@ -4,7 +4,7 @@ const ERROR_LIST = require('../errors/errorList');
 
 const eventController = {
     findEventById: (req, res, next) => {
-        Event.findById(req.params.id)
+        Event.findById(req.params.id, '-__v')
             .populate('Author Comments')
             .exec()
             .then((event) => {
@@ -21,7 +21,7 @@ const eventController = {
             });
     },
     getEvents: (req, res) => {
-        Event.find({})
+        Event.find({}, '-__v')
             .populate('Author Comments')
             .exec()
             .then((events) => {

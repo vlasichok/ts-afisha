@@ -1,33 +1,26 @@
 <div class="container">
   <div class="row justify-content-md-center">
-    <div class="col-2"></div>
-    <div class="col-6">
-      <h1 style="text-align: center;">Login</h1>
-    </div>
-    <div class="col-2"></div>
-  </div>
-  <hr>
-  <div class="row justify-content-md-center">
     <div class="col-3"></div>
     <div class="col-4">
-     <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" autocomplete="off" novalidate>
-        <div class="form-group" [ngClass]="{'invalid': !validateInputField('userEmail')}">
-          <label for="userEmail">User Email:</label>
-
-          <em *ngIf="!validateInputField('userEmail') && loginForm.controls.userEmail.errors">The email is invalid</em>
-          <em *ngIf="!validateInputField('userEmail') && loginForm.controls.userEmail.errors.required">Required</em>
-          <input formControlName="userEmail" name="userEmail" id="userEmail" type="email" class="form-control" placeholder="User Email..." required/>
-        </div>
-        <div class="form-group" [ngClass]="{'invalid': !validateInputField('userPassword')}">
-          <label for="userPassword">Password:</label>
-          <em *ngIf="!validateInputField('userPassword')">Required</em>
-          <input formControlName="userPassword" name="userPassword" id="userPassword" type="password" class="form-control" placeholder="Password..." required/>
-        </div>
-       <div class="buttons">
-          <button [disabled]="!validateLoginForm()" type="submit" class="btn btn-primary">Login</button>
-          <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
-       </div>
-      </form>
+      <mat-card class="card" role="group">
+        <mat-card-title>
+          <h3>Login</h3>
+        </mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" autocomplete="off" novalidate>
+            <mat-form-field [ngClass]="{'invalid': !validateInputField('email')}">
+              <input matInput placeholder="email" type="email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field [ngClass]="{'invalid': !validateInputField('password')}">
+              <input matInput placeholder="password" type="password" formControlName="password">
+            </mat-form-field>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" [disabled]="!validateLoginForm()">Login</button>
+              <button mat-raised-button (click)="cancel()">Cancel</button>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>
+      </mat-card>
     </div>
     <div class="col-3"></div>
   </div>

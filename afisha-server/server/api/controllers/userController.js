@@ -4,7 +4,7 @@ const ERROR_LIST = require('../errors/errorList');
 
 const userController = {
     findUserById: (req, res, next) => {
-        User.findById(req.params.id)
+        User.findById(req.params.id, '-__v -password')
             .then((user) => {
                 if(!user) {
                     return res.status(404).json(ErrorBuilder(404, ERROR_LIST.NOT_FOUND))
@@ -19,14 +19,6 @@ const userController = {
     },
     getUser: (req, res) => {
         return res.status(200).json(req.user);
-    },
-    createUser: (req, res) => {
-        User.create(req.body)
-            .then((user) => {
-                return res.status(201).send(user.toJSON());
-            }, (error) => {
-                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
-            });
     },
     updateUser: (req, res) => {
         const user = req.user;
