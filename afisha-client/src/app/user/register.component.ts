@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {PATH} from "../shared/constants/path.constant";
 import {AuthService} from "../shared/services/auth.service";
+import {IUser} from "../shared/models/user.model";
 
 @Component({
   selector: 'app-register',
@@ -29,13 +30,13 @@ export class RegisterComponent implements OnInit {
     this.router.navigate([PATH.EVENTS]);
   }
 
-  register(registerValues): void{
+  register(registerValues: IUser): void{
     if(this.validateRegisterForm()) {
       this.authService.registerUser(registerValues);
     }
   }
 
-  validateInputField(inputName): boolean{
+  validateInputField(inputName: string): boolean{
     return this.registerForm.controls[inputName].valid || this.registerForm.controls[inputName].untouched;
   }
 

@@ -15,6 +15,7 @@ const checkAuthenticated = (req, res, next) => {
         if(!payload){
             return res.status(401).send(ErrorBuilder(401,ERROR_LIST.UNAUTHORIZED));
         }
+        //we pass the ID of the user "userId" in order to check if it authorised or not
         req.userId = payload.sub;
         next();
     } catch (error) {

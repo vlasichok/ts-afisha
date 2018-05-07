@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {PATH} from "../shared/constants/path.constant";
 import {AuthService} from "../shared/services/auth.service";
+import {IUser} from "../shared/models/user.model";
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate([PATH.SEARCH]);
   }
 
-  login(loginValues): void{
+  login(loginValues: IUser): void{
     if(this.validateLoginForm()){
       this.authService.loginUser(loginValues);
     }
