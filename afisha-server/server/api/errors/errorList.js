@@ -1,5 +1,5 @@
 const errorList = {
-    NOT_FOUND: 'The entity is not found',
+    EVENT_NOT_FOUND: 'The event is not found',
     UNKNOWN_ERROR: 'Unknown server error'
 };
 

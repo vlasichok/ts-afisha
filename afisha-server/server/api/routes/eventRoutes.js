@@ -10,8 +10,6 @@ const eventRoutes = () => {
         .post(eventController.createEvent);
 
     //middleware that get the event for DB and pass it in req
-    eventRouter.use('/:id', eventController.findEventById);
-
     eventRouter.route('/:id')
         .get(eventController.getOneEvent)
         .put(eventController.updateEvent)

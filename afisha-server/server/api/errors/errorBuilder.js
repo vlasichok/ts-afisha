@@ -1,9 +1,8 @@
-const errorBuilder = (status, errorMessage, errorDescription) => {
+const errorBuilder = (status, errorMessage) => {
 
     return {
         status: status,
-        message: errorMessage,
-        description: errorDescription
+        message: errorMessage
     }
 };
 
