@@ -8,5 +8,6 @@ require('./middleware/appMiddleware')(app);
 app.use('/api', api);
 //set up global error handling
 
+
 //export the app for testing
 module.exports = app;
