@@ -8,7 +8,7 @@ import {IUser} from "../models/user.model";
 export class AuthService {
 
   user: IUser;
-  TOKEN_KEY = 'token';
+  readonly TOKEN_KEY = 'token';
 
   constructor(private http: HttpClient) { }
 
