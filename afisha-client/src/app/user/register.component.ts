@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {PATH} from "../shared/constants/path.constant";
 import {AuthService} from "../shared/services/auth.service";
 import {IUser} from "../shared/models/user.model";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-register',
@@ -32,7 +33,11 @@ export class RegisterComponent implements OnInit {
 
   register(registerValues: IUser): void{
     if(this.validateRegisterForm()) {
-      this.authService.registerUser(registerValues);
+      this.authService.registerUser(registerValues)
+        .subscribe(
+          (token) => { localStorage.setItem(AuthService.TOKEN_KEY, token.token) },
+          (error: HttpErrorResponse) => console.log(error)
+        );
     }
   }
 

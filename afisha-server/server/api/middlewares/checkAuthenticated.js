@@ -10,6 +10,14 @@ const checkAuthenticated = (req, res, next) => {
     }
 
     const token = req.header('authorization').split(' ')[1];
+    if (!token){
+        return res.status(401).send(ErrorBuilder(401,ERROR_LIST.UNAUTHORIZED));
+    }
+    const tokenParts = token.split('.');
+    if(tokenParts.length !== 3){
+        return res.status(401).send(ErrorBuilder(401,ERROR_LIST.UNAUTHORIZED));
+    }
+
     try{
         const payload = jwt.verify(token, config.secrets.jwt);
         if(!payload){

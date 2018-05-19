@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {IToken} from "../models/token.model";
 import {IUser} from "../models/user.model";
@@ -8,36 +8,35 @@ import {IUser} from "../models/user.model";
 export class AuthService {
 
   user: IUser;
-  readonly TOKEN_KEY = 'token';
+  static readonly TOKEN_KEY = 'token';
 
   constructor(private http: HttpClient) { }
 
-  get token(): string{
-    console.log(this.TOKEN_KEY);
-    return localStorage.getItem(this.TOKEN_KEY);
+  static get token(): string{
+    return localStorage.getItem(AuthService.TOKEN_KEY);
   }
 
   get isAuthenticated(): boolean{
-    return !!localStorage.getItem(this.TOKEN_KEY);
+    const isExist = !!localStorage.getItem(AuthService.TOKEN_KEY);
+    if(!isExist){
+      return false;
+    }
+    const tokenParts = localStorage.getItem(AuthService.TOKEN_KEY).split('.');
+    if(tokenParts.length !== 3) {
+      return false;
+    }
+    return true;
   }
 
   registerUser(registerValues: IUser){
-    return this.http.post<IToken>(environment.apiUrl + 'register', registerValues)
-      .subscribe(
-        (token) => { localStorage.setItem(this.TOKEN_KEY, token.token) },
-        (error: HttpErrorResponse) => console.log(error)
-      );
+    return this.http.post<IToken>(environment.apiUrl + 'register', registerValues);
   }
 
   loginUser(loginValues: IUser){
-    return this.http.post<IToken>(environment.apiUrl + 'login', loginValues)
-      .subscribe(
-        (token) => { localStorage.setItem(this.TOKEN_KEY, token.token) },
-        (error: HttpErrorResponse) => console.log(error)
-      );
+    return this.http.post<IToken>(environment.apiUrl + 'login', loginValues);
   }
 
   logoutUser(): void{
-    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(AuthService.TOKEN_KEY);
   }
 }

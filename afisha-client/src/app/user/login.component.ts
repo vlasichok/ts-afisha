@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {PATH} from "../shared/constants/path.constant";
 import {AuthService} from "../shared/services/auth.service";
 import {IUser} from "../shared/models/user.model";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,11 @@ export class LoginComponent implements OnInit {
 
   login(loginValues: IUser): void{
     if(this.validateLoginForm()){
-      this.authService.loginUser(loginValues);
+      this.authService.loginUser(loginValues)
+        .subscribe(
+          (token) => { localStorage.setItem(AuthService.TOKEN_KEY, token.token) },
+          (error: HttpErrorResponse) => console.log(error)
+        );
     }
   }
 
