@@ -1,9 +1,8 @@
-const errorBuilder = (status, errorMessage) => {
+const errorBuilder = (error, cause) => {
 
-    return {
-        status: status,
-        message: errorMessage
-    }
+    error.cause = cause.message || error.cause;
+
+    return error;
 };
 
 module.exports = errorBuilder;

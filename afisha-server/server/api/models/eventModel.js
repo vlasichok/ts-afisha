@@ -51,15 +51,16 @@ const EventSchema = new mongoose.Schema({
 });
 
 const Event = mongoose.model('Event', EventSchema);
+const avoidPropery = '-__v';
 
 Event.getOneEvent = (id) => {
-    return Event.findById(id, '-__v')
+    return Event.findById(id, avoidPropery)
         .populate('Author Comments')
         .exec();
 };
 
 Event.getEvents = () => {
-    return Event.find({}, '-__v')
+    return Event.find({}, avoidPropery)
         .populate('Author Comments')
         .exec();
 };

@@ -7,12 +7,12 @@ const eventController = {
        Event.getOneEvent(req.params.id)
             .then((event) => {
                 if (!event) {
-                    return res.status(404).json(ErrorBuilder(404, ERROR_LIST.EVENT_NOT_FOUND));
+                    return res.status(404).json(ErrorBuilder(ERROR_LIST[1]));
                 } else {
                     return res.status(200).json(event); //req.event is passed thought next from "findEventById"
                 }
             }, (error) => {
-                return res.status(500).json(ErrorBuilder(500, error.message));
+                return res.status(500).json(ErrorBuilder(ERROR_LIST[2], error));
             });
     },
     getEvents: (req, res) => {
@@ -20,7 +20,7 @@ const eventController = {
             .then((events) => {
                 return res.status(200).json(events);
             }, (error) => {
-                return res.status(500).json(ErrorBuilder(500, error.message));
+                return res.status(500).json(ErrorBuilder(ERROR_LIST[2], error));
             });
     },
     updateEvent: (req, res) => {
@@ -28,7 +28,7 @@ const eventController = {
             .then((updatedEvent) => {
                 return res.status(200).json(updatedEvent);
             },(error) => {
-                return res.status(500).json(ErrorBuilder(500, error.message));
+                return res.status(500).json(ErrorBuilder(ERROR_LIST[2], error));
             });
     },
     createEvent: (req, res) => {
@@ -36,7 +36,7 @@ const eventController = {
             .then((event) => {
                 return res.send(201).json(event);
             }, (error) => {
-                return res.status(500).json(ErrorBuilder(500, error.message));
+                return res.status(500).json(ErrorBuilder(ERROR_LIST[2], error));
             });
     },
     deleteEvent: (req, res) => {
@@ -44,7 +44,7 @@ const eventController = {
             .then((removedEvent) => {
                 return res.status(200).json(removedEvent);
             },(error) => {
-                return res.status(500).json(ErrorBuilder(500, error.message));
+                return res.status(500).json(ErrorBuilder(ERROR_LIST[2], error));
             });
     }
 };
