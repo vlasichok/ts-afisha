@@ -4,12 +4,17 @@ import {RouterModule} from "@angular/router";
 import {userRoutes} from "./user.routes";
 import { LoginComponent } from './login.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from "@angular/material";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(userRoutes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule
   ],
   declarations: [
     LoginComponent

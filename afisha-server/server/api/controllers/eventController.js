@@ -1,65 +1,51 @@
 const Event = require('../models/eventModel');
+const ErrorBuilder = require('../errors/errorBuilder');
+const ERROR_LIST = require('../errors/errorList');
 
 const eventController = {
-    findEventById: (req, res, next, id) => {
-        Event.findById(id)
-            .populate('Author Comments')
-            .exec()
+    getOneEvent: (req, res) => {
+       Event.getOneEvent(req.params.id)
             .then((event) => {
                 if (!event) {
-                    next(new Error('No event with ' + id + ' is found'));
+                    return res.status(404).json(ErrorBuilder(ERROR_LIST.EVENT_NOT_FOUND));
                 } else {
-                    //we bind the event to the req and call next
-                    //so that we can then use it for get, delete or put methods
-                    req.event = event;
-                    next();
+                    return res.status(200).json(event);
                 }
             }, (error) => {
-                next(error);
+                return res.status(500).json(ErrorBuilder(ERROR_LIST.INTERNAL_SERVER_ERROR, error));
             });
     },
-    getEvents: (req, res, next) => {
-        Event.find({})
-            .populate('Author Comments')
-            .exec()
+    getEvents: (req, res) => {
+        Event.getEvents()
             .then((events) => {
-                res.json(events);
+                return res.status(200).json(events);
             }, (error) => {
-                next(error);
+                return res.status(500).json(ErrorBuilder(ERROR_LIST.INTERNAL_SERVER_ERROR, error));
             });
     },
-    getOneEvent: (req, res, next) => {
-        res.json(req.event); //req.event is passed thought next from "findEventById"
+    updateEvent: (req, res) => {
+        Event.updateEvents(req.params.id, req.body)
+            .then((updatedEvent) => {
+                return res.status(200).json(updatedEvent);
+            },(error) => {
+                return res.status(500).json(ErrorBuilder(ERROR_LIST.INTERNAL_SERVER_ERROR, error));
+            });
     },
-    updateEvent: (req, res, next) => {
-        let event = req.event;
-        let update = req.body;
-        Object.assign(event, update);
-
-        event.save((error, updatedEvent) => {
-            if(error) {
-                next(error);
-            } else {
-                res.json(updatedEvent);
-            }
-        })
-    },
-    createEvent: (req, res, next) => {
+    createEvent: (req, res) => {
         Event.create(req.body)
             .then((event) => {
-                res.json(event);
+                return res.send(201).json(event);
             }, (error) => {
-                next(error);
+                return res.status(500).json(ErrorBuilder(ERROR_LIST.INTERNAL_SERVER_ERROR, error));
             });
     },
-    deleteEvent: (req, res, next) => {
-        req.event.remove((error, removedEvent) => {
-            if(error){
-                next(error);
-            } else {
-                res.json(removedEvent);
-            }
-        });
+    deleteEvent: (req, res) => {
+        Event.findByIdAndRemove(req.params.id)
+            .then((removedEvent) => {
+                return res.status(200).json(removedEvent);
+            },(error) => {
+                return res.status(500).json(ErrorBuilder(ERROR_LIST.INTERNAL_SERVER_ERROR, error));
+            });
     }
 };
 
