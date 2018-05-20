@@ -1,17 +1,11 @@
-/**
- * This function build an Error message fo an API
- * @param status
- * @param errorMessage
- * @param errorDescription
- * @returns {{status: *, message: *, description: *}}
- */
-const errorBuilder = (status, errorMessage, errorDescription) => {
+const config = require('../../config/config');
+const errorBuilder = (internalError, error) => {
 
-    return {
-        status: status,
-        message: errorMessage,
-        description: errorDescription
+    if(config.env === 'development' || config.env === 'testing'){
+        internalError.cause = error.message || internalError.cause;
     }
+
+    return internalError;
 };
 
 module.exports = errorBuilder;

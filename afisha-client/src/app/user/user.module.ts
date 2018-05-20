@@ -5,7 +5,6 @@ import {userRoutes} from "./user.routes";
 import { LoginComponent } from './login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from "@angular/material";
-import {RegisterComponent} from "./register.component";
 
 @NgModule({
   imports: [
@@ -18,8 +17,7 @@ import {RegisterComponent} from "./register.component";
     MatButtonModule
   ],
   declarations: [
-    LoginComponent,
-    RegisterComponent
+    LoginComponent
   ]
 })
 export class UserModule {

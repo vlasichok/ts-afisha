@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Event = new mongoose.Schema({
+const EventSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -50,4 +50,25 @@ const Event = new mongoose.Schema({
     ]
 });
 
-module.exports = mongoose.model('Event', Event);
+const Event = mongoose.model('Event', EventSchema);
+const avoidPropery = '-__v';
+
+Event.getOneEvent = (id) => {
+    return Event.findById(id, avoidPropery)
+        .populate('Author Comments')
+        .exec();
+};
+
+Event.getEvents = () => {
+    return Event.find({}, avoidPropery)
+        .populate('Author Comments')
+        .exec();
+};
+
+Event.updateEvents = (id, eventBody) => {
+    return Event.findByIdAndUpdate(id, eventBody)
+        .populate('Author Comments')
+        .exec()
+};
+
+module.exports = Event;
