@@ -1,12 +1,11 @@
 const config = require('../../config/config');
-const errorBuilder = (error, internalError) => {
+const errorBuilder = (internalError, error) => {
 
     if(config.env === 'development' || config.env === 'testing'){
-        error.description = internalError.name || error.description;
-        error.cause = internalError.message || error.cause;
+        internalError.cause = error.message || internalError.cause;
     }
 
-    return error;
+    return internalError;
 };
 
 module.exports = errorBuilder;
