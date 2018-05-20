@@ -11,6 +11,6 @@ export class EventResolverService implements Resolve<any>{
   constructor(private eventService: EventService) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<IEvent> {
-    return this.eventService.getOneEvent(route.params['id']).map((event: IEvent) => event);
+    return this.eventService.getOneEvent(route.params['id']);
   }
 }

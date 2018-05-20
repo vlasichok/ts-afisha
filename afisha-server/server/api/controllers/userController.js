@@ -7,14 +7,14 @@ const userController = {
         User.findById(req.params.id, '-__v -password')
             .then((user) => {
                 if(!user) {
-                    return res.status(404).json(ErrorBuilder(404, ERROR_LIST.NOT_FOUND))
+                    return res.status(404).json(ErrorBuilder(ERROR_LIST.NOT_FOUND))
                 } else {
                     //pass the user data to other methods
                     req.user = user;
                     next();
                 }
             }, (error) => {
-                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
+                return res.status(500).json(ErrorBuilder(ERROR_LIST.UNKNOWN_ERROR, error.message));
             });
     },
     getUser: (req, res) => {
@@ -26,7 +26,7 @@ const userController = {
 
         user.save((error, updatedUser) => {
             if(error){
-                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
+                return res.status(500).json(ErrorBuilder(ERROR_LIST.UNKNOWN_ERROR, error.message));
             } else {
                 return res.status(200).send(updatedUser.toJSON());
             }
