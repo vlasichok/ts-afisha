@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {PATH} from "../shared/constants/path.constant";
+import {AuthService} from "../shared/services/auth.service";
+import {IUser} from "../shared/models/user.model";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -12,10 +15,10 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
     this.loginForm = formBuilder.group({
-      userEmail: ['', [Validators.required, Validators.email]],
-      userPassword: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
     });
   }
 
@@ -30,9 +33,13 @@ export class LoginComponent implements OnInit {
     this.router.navigate([PATH.SEARCH]);
   }
 
-  login(loginValues) {
+  login(loginValues: IUser): void{
     if(this.validateLoginForm()){
-      //@TODO: call method to login a user
+      this.authService.loginUser(loginValues)
+        .subscribe(
+          (token) => { localStorage.setItem(AuthService.TOKEN_KEY, token.token) },
+          (error: HttpErrorResponse) => console.log(error)
+        );
     }
   }
 
@@ -42,7 +49,7 @@ export class LoginComponent implements OnInit {
    * @returns {boolean}
    */
   validateInputField(inputName): boolean{
-      return this.loginForm.controls[inputName].valid || this.loginForm.controls[inputName].untouched;
+    return this.loginForm.controls[inputName].valid || this.loginForm.controls[inputName].untouched;
   }
 
   validateLoginForm(): boolean{

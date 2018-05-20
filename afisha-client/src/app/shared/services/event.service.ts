@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IEvent} from "../models/event.model";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 
 
@@ -12,15 +11,15 @@ export class EventService {
 
   }
 
-  getEvents(): Observable<IEvent[]>{
+  getEvents(){
     return this.http.get<IEvent[]>( environment.apiUrl + 'events');
   }
 
-  getOneEvent(id: number): Observable<IEvent> {
+  getOneEvent(id: number){
     return this.http.get<IEvent>(environment.apiUrl + 'events/' + id);
   }
 
-  createEvent(event: IEvent): Observable<IEvent>{
+  createEvent(event: IEvent){
     return this.http.post<IEvent>(environment.apiUrl + 'event', event);
   }
 
