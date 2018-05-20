@@ -1,6 +1,10 @@
-const errorBuilder = (error, cause) => {
+const config = require('../../config/config');
+const errorBuilder = (error, internalError) => {
 
-    error.cause = cause.message || error.cause;
+    if(config.env === 'development' || config.env === 'testing'){
+        error.description = internalError.name || error.description;
+        error.cause = internalError.message || error.cause;
+    }
 
     return error;
 };
