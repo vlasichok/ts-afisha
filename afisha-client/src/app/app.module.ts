@@ -18,6 +18,7 @@ import {SearchComponent} from './search/search.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptorService} from "./shared/services/auth-interceptor.service";
 import {AuthService} from "./shared/services/auth.service";
+import {EventResolverService} from "./shared/services/event-resolver.service";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {AuthService} from "./shared/services/auth.service";
     EventService,
     GuardEventRouteService,
     AuthService,
+    EventResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

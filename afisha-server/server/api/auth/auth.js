@@ -16,7 +16,7 @@ const registerUser = (req, res) => {
         .then((user) => {
             createAndSendToken(user, res);
         }, (error) => {
-            return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
+            return res.status(500).json(ErrorBuilder(ERROR_LIST.UNKNOWN_ERROR, error));
         });
 };
 
@@ -25,15 +25,15 @@ const loginUser = (req, res) => {
 
     const success = (user) => {
         if(!user){
-            return res.status(401).json(ErrorBuilder(401, ERROR_LIST.INVALID_CREDENTIALS));
+            return res.status(401).json(ErrorBuilder(ERROR_LIST.INVALID_CREDENTIALS));
         }
 
         bcrypt.compare(userData.password, user.password, (error, isMatch) =>{
             if(error){
-                return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
+                return res.status(500).json(ErrorBuilder(ERROR_LIST.UNKNOWN_ERROR, error));
             }
             if(!isMatch){
-                return res.status(401).json(ErrorBuilder(401, ERROR_LIST.INVALID_CREDENTIALS));
+                return res.status(401).json(ErrorBuilder(ERROR_LIST.INVALID_CREDENTIALS));
             }
             createAndSendToken(user, res);
         });
@@ -42,7 +42,7 @@ const loginUser = (req, res) => {
     User.findOne({email: userData.email})
         .then(success)
         .catch((error) => {
-            return res.status(500).json(ErrorBuilder(500, ERROR_LIST.UNKNOWN_ERROR, error.message));
+            return res.status(500).json(ErrorBuilder(ERROR_LIST.USER_NOT_FOUND, error));
         });
 
 };

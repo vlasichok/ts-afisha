@@ -5,11 +5,12 @@ import {EventComponent} from "./events/event.component";
 import {GuardEventRouteService} from "./shared/guards/guard-event-route.service";
 import {PATH} from "./shared/constants/path.constant";
 import {SearchComponent} from "./search/search.component";
+import {EventResolverService} from "./shared/services/event-resolver.service";
 
 export const appRoutes: Routes = [
   { path: PATH.SEARCH, component: SearchComponent},
   { path: PATH.EVENTS, component: EventsListComponent },
-  { path: PATH.EVENTS_ID, component: EventComponent, canActivate: [GuardEventRouteService] },
+  { path: PATH.EVENTS_ID, component: EventComponent, canActivate: [GuardEventRouteService], resolve: {event: EventResolverService} },
   { path: PATH.ERROR, component: Error404Component },
   { path: PATH.USER, loadChildren: 'app/user/user.module#UserModule' },
   { path: PATH.ROOT, redirectTo: PATH.SEARCH, pathMatch: 'full'}
