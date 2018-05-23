@@ -19,7 +19,7 @@ export class AppComponent {
    * @returns {boolean}
    */
   show(): boolean {
-    let bool = this.router.url === "/" + PATH.SEARCH;
+    let bool = this.router.url === "/" + PATH.SEARCH || this.router.url === "/" + PATH.ADMIN;
     return bool;
   }
 }

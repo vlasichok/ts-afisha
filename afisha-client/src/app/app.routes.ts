@@ -13,5 +13,6 @@ export const appRoutes: Routes = [
   { path: PATH.EVENTS_ID, component: EventComponent, canActivate: [GuardEventRouteService], resolve: {event: EventResolverService} },
   { path: PATH.ERROR, component: Error404Component },
   { path: PATH.USER, loadChildren: 'app/user/user.module#UserModule' },
+  { path: PATH.ADMIN, loadChildren: 'app/admin/admin.module#AdminModule' },
   { path: PATH.ROOT, redirectTo: PATH.SEARCH, pathMatch: 'full'}
 ];

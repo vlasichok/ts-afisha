@@ -1,0 +1,16 @@
+<mat-list>
+  <mat-divider></mat-divider>
+  <mat-list-item *ngFor="let event of events">
+      <mat-card-title>{{ event.title }}</mat-card-title>
+      <button mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>details</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>pause</mat-icon>
+      </button>
+  <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

@@ -5,7 +5,7 @@ const auth = require('./auth/auth');
 const checkAuthenticated = require('./middlewares/checkAuthenticated');
 
 //api router will mount other routers used in the API
-router.use('/events', checkAuthenticated, eventRoutes);
+router.use('/events', eventRoutes);
 router.use('/users', userRoutes);
 router.post('/login', auth.loginUser);
 router.post('/register', auth.registerUser);

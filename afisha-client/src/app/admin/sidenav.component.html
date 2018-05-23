@@ -1,0 +1,27 @@
+<mat-drawer-container class="admin-sidenav-container">
+  <mat-drawer #drawer
+              class="admin-sidenav mat-elevation-z10"
+              [opened]="!isScreenSmall()"
+              [mode]="isScreenSmall() ? 'over' : 'side'">
+    <mat-toolbar color="primary">Admin panel</mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item>
+        <a matLine [routerLink]="[path.EVENTS]">Your Events</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a matLine [routerLink]="[path.EVENTS + '/create']">Add New Event</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a matLine>Statistics</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="admin-sidenav-content">
+    <app-toolbar (toggleSidenav)="drawer.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</mat-drawer-container>
