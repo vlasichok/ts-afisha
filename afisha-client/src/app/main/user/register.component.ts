@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {PATH} from "../shared/constants/path.constant";
-import {AuthService} from "../shared/services/auth.service";
-import {IUser} from "../shared/models/user.model";
+import {PATH} from "../../shared/constants/path.constant";
+import {AuthService} from "../../shared/services/auth.service";
+import {IUser} from "../../shared/models/user.model";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate([PATH.EVENTS]);
+    this.router.navigate([PATH.ROOT]);
   }
 
   register(registerValues: IUser): void{
