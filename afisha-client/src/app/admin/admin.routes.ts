@@ -5,7 +5,7 @@ import {SidenavComponent} from "./sidenav.component";
 export const adminRoutes = [
   { path: PATH.ROOT, component: SidenavComponent,
     children: [
-      { path: PATH.EVENTS, component: EventTableComponent}
+      { path: PATH.EVENTS, component: EventTableComponent }
     ]},
   { path: '*', redirectTo: PATH.ROOT }
 ];

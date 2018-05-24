@@ -8,13 +8,15 @@ import { ToolbarComponent } from './toolbar.component';
 import { EventTableComponent } from './event-table.component';
 import { SidenavComponent } from './sidenav.component';
 import {EventService} from "../shared/services/event.service";
+import {MatTableModule} from "@angular/material";
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule.forChild(adminRoutes),
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   providers: [
     EventService
