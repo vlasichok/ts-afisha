@@ -9,6 +9,9 @@ import { EventTableComponent } from './event-table.component';
 import { SidenavComponent } from './sidenav.component';
 import {EventService} from "../shared/services/event.service";
 import {MatTableModule} from "@angular/material";
+import { CreateEventComponent } from './event/create-event.component';
+import { EditEventComponent } from './event/edit-event.component';
+import { DisplayEventComponent } from './event/display-event.component';
 
 @NgModule({
   imports: [
@@ -24,7 +27,10 @@ import {MatTableModule} from "@angular/material";
   declarations: [
     ToolbarComponent,
     EventTableComponent,
-    SidenavComponent
+    SidenavComponent,
+    CreateEventComponent,
+    EditEventComponent,
+    DisplayEventComponent
   ]
 })
 export class AdminModule { }

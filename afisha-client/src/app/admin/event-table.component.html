@@ -30,14 +30,14 @@
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-        <mat-cell *matCellDef="let event">
-          <button mat-icon-button>
+        <mat-cell *matCellDef="let event" (click)="doAction($event, event._id)">
+          <button mat-icon-button id="edit">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button>
-            <mat-icon>details</mat-icon>
+          <button mat-icon-button id="open_in_new">
+            <mat-icon>open_in_new</mat-icon>
           </button>
-          <button mat-icon-button>
+          <button mat-icon-button id="pause">
             <mat-icon>pause</mat-icon>
           </button>
         </mat-cell>

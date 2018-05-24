@@ -8,5 +8,7 @@ export const PATH = {
   LOGIN: 'login',
   REGISTER: 'register',
   SEARCH: 'search',
-  ABOUT: 'about'
+  ABOUT: 'about',
+  CREATE: 'create',
+  EDIT: 'edit'
 };
