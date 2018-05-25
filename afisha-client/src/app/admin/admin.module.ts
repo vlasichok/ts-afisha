@@ -12,6 +12,8 @@ import {MatTableModule} from "@angular/material";
 import { CreateEventComponent } from './event/create-event.component';
 import { EditEventComponent } from './event/edit-event.component';
 import { DisplayEventComponent } from './event/display-event.component';
+import {GuardEventRouteService} from "../shared/guards/guard-event-route.service";
+import {EventResolverService} from "../shared/services/event-resolver.service";
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { DisplayEventComponent } from './event/display-event.component';
     MatTableModule
   ],
   providers: [
-    EventService
+    EventService,
+    GuardEventRouteService,
+    EventResolverService
   ],
   declarations: [
     ToolbarComponent,

@@ -53,32 +53,32 @@ export class EventTableComponent implements OnInit {
       );
   }
 
-  doAction(event, eventObject: IEvent): void{
-    if(!event.target.id && !event.target.textContent) {
+  doAction(clickEvent, event: IEvent): void{
+    if(!clickEvent.target.id && !clickEvent.target.textContent) {
       return;
     }
     let action: string;
-    if(event.target.id){
-      action = event.target.id;
+    if(clickEvent.target.id){
+      action = clickEvent.target.id;
     } else {
-      action = event.target.textContent;
+      action = clickEvent.target.textContent;
     }
 
     switch (action) {
       case this.actionButtons.edit: {
-        this.router.navigate([this.router.url + '/' + eventObject._id + '/' + PATH.EDIT]);
+        this.router.navigate([this.router.url + '/' + event._id + '/' + PATH.EDIT]);
         break;
       }
       case this.actionButtons.display: {
-        this.router.navigate([this.router.url + '/' + eventObject._id]);
+        this.router.navigate([this.router.url + '/' + event._id]);
         break;
       }
       case this.actionButtons.stop: {
-        eventObject.active = false;
+        event.active = false;
         break;
       }
       case this.actionButtons.start: {
-        eventObject.active = true;
+        event.active = true;
         break;
       }
     }
