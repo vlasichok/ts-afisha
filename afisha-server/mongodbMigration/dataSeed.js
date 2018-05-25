@@ -18,7 +18,8 @@ const dataSeed = () => {
                     'attends': 123000,
                     'images': 123123123,
                     'author': new mongoose.Types.ObjectId,
-                    'comments': []
+                    'comments': [],
+                    'active': true
                 },
                 {
                     'title': 'Movie challenge',
@@ -32,7 +33,8 @@ const dataSeed = () => {
                     'attends': 15000,
                     'images': 1221212121,
                     'author': new mongoose.Types.ObjectId,
-                    'comments': []
+                    'comments': [],
+                    'active': true
                 },
                 {
                     'title': 'Best weekend',
@@ -43,10 +45,56 @@ const dataSeed = () => {
                     'updatedAt': new Date,
                     'timeOfEvent': '10 pm',
                     'views': 1564,
-                    'attends': 21000,
+                    'attends': 21001,
                     'images': 1221212121,
                     'author': new mongoose.Types.ObjectId,
-                    'comments': []
+                    'comments': [],
+                    'active': true
+                },
+                {
+                    'title': 'Events only for girls',
+                    'abstract': 'Party with a lot of hot girls',
+                    'description': 'Americans excel at the losing game of competitive busyness. In this context, a weekend without email and spreadsheets might seem like a victory in and of itself—and it is, kind of. But if you don’t feel rejuvenated and keen to face Monday after two work-free days, there might be a reason: You’re doing your weekend wrong.',
+                    'date': new Date,
+                    'createdAt': new Date,
+                    'updatedAt': new Date,
+                    'timeOfEvent': '10 pm',
+                    'views': 154,
+                    'attends': 2123,
+                    'images': 1221212121,
+                    'author': new mongoose.Types.ObjectId,
+                    'comments': [],
+                    'active': true
+                },
+                {
+                    'title': 'Events only for guys',
+                    'abstract': 'Party with a lot of hot guys',
+                    'description': 'In this context, a weekend without email and spreadsheets might seem like a victory in and of itself—and it is, kind of. But if you don’t feel rejuvenated and keen to face Monday after two work-free days, there might be a reason: You’re doing your weekend wrong.',
+                    'date': new Date,
+                    'createdAt': new Date,
+                    'updatedAt': new Date,
+                    'timeOfEvent': '10 pm',
+                    'views': 154,
+                    'attends': 215,
+                    'images': 1221212121,
+                    'author': new mongoose.Types.ObjectId,
+                    'comments': [],
+                    'active': true
+                },
+                {
+                    'title': 'Alcohol party',
+                    'abstract': 'Everybody is gonna be really drunk on the party',
+                    'description': 'Alcohol seems like a victory in and of itself—and it is, kind of. But if you don’t feel rejuvenated and keen to face Monday after two work-free days, there might be a reason: You’re doing your weekend wrong.',
+                    'date': new Date,
+                    'createdAt': new Date,
+                    'updatedAt': new Date,
+                    'timeOfEvent': '10 pm',
+                    'views': 154111,
+                    'attends': 2100,
+                    'images': 1221212121,
+                    'author': new mongoose.Types.ObjectId,
+                    'comments': [],
+                    'active': false
                 }
             ]
         },

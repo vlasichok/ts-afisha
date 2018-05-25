@@ -47,7 +47,10 @@ const EventSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comments"
         }
-    ]
+    ],
+    active: {
+        type: Boolean
+    }
 });
 
 const Event = mongoose.model('Event', EventSchema);

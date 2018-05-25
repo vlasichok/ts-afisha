@@ -18,6 +18,13 @@ export class EventTableComponent implements OnInit {
   dataSource: MatTableDataSource<IEvent>;
   private paginator: MatPaginator;
   private sort: MatSort;
+  //here you can change the mat-icon buttons
+  actionButtons = {
+    edit: 'edit',
+    display: 'open_in_new',
+    stop: 'pause',
+    start: 'replay'
+  };
 
   constructor(private eventService: EventService, private router: Router) { }
 
@@ -46,7 +53,7 @@ export class EventTableComponent implements OnInit {
       );
   }
 
-  doAction(event, eventId: string): void{
+  doAction(event, eventObject: IEvent): void{
     if(!event.target.id && !event.target.textContent) {
       return;
     }
@@ -58,19 +65,22 @@ export class EventTableComponent implements OnInit {
     }
 
     switch (action) {
-      case 'edit': {
-        this.router.navigate([this.router.url + '/' + eventId + '/' + PATH.EDIT]);
+      case this.actionButtons.edit: {
+        this.router.navigate([this.router.url + '/' + eventObject._id + '/' + PATH.EDIT]);
         break;
       }
-      case 'open_in_new': {
-        this.router.navigate([this.router.url + '/' + eventId]);
+      case this.actionButtons.display: {
+        this.router.navigate([this.router.url + '/' + eventObject._id]);
         break;
       }
-      case 'pause': {
-        console.log("EVENT IS STOPPED");
+      case this.actionButtons.stop: {
+        eventObject.active = false;
+        break;
+      }
+      case this.actionButtons.start: {
+        eventObject.active = true;
         break;
       }
     }
   }
-
 }

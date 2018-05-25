@@ -30,15 +30,16 @@
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-        <mat-cell *matCellDef="let event" (click)="doAction($event, event._id)">
-          <button mat-icon-button id="edit">
-            <mat-icon>edit</mat-icon>
+        <mat-cell *matCellDef="let event" (click)="doAction($event, event)">
+          <button mat-icon-button [id]="actionButtons.edit">
+            <mat-icon>{{actionButtons.edit}}</mat-icon>
           </button>
-          <button mat-icon-button id="open_in_new">
-            <mat-icon>open_in_new</mat-icon>
+          <button mat-icon-button [id]="actionButtons.display">
+            <mat-icon>{{actionButtons.display}}</mat-icon>
           </button>
-          <button mat-icon-button id="pause">
-            <mat-icon>pause</mat-icon>
+          <button mat-icon-button [id]="(event.active ? actionButtons.stop : actionButtons.start)">
+            <mat-icon *ngIf="event.active">{{actionButtons.stop}}</mat-icon>
+            <mat-icon *ngIf="!event.active">{{actionButtons.start}}</mat-icon>
           </button>
         </mat-cell>
       </ng-container>

@@ -12,5 +12,6 @@ export interface IEvent {
   attends: number,
   images: [Object],
   author: string,
-  comments: [string]
+  comments: [string],
+  active: boolean
 }
