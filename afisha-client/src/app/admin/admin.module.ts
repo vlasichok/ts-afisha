@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {MaterialModule} from "../shared/material.module";
 import {RouterModule} from "@angular/router";
 import {adminRoutes} from "./admin.routes";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ToolbarComponent } from './toolbar.component';
 import { EventTableComponent } from './event-table.component';
 import { SidenavComponent } from './sidenav.component';
@@ -14,6 +14,7 @@ import { EditEventComponent } from './event/edit-event.component';
 import { DisplayEventComponent } from './event/display-event.component';
 import {GuardEventRouteService} from "../shared/guards/guard-event-route.service";
 import {EventResolverService} from "../shared/services/event-resolver.service";
+import {AmazingTimePickerModule, AmazingTimePickerService} from "amazing-time-picker";
 
 @NgModule({
   imports: [
@@ -21,12 +22,15 @@ import {EventResolverService} from "../shared/services/event-resolver.service";
     MaterialModule,
     RouterModule.forChild(adminRoutes),
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule,
+    AmazingTimePickerModule
   ],
   providers: [
     EventService,
     GuardEventRouteService,
-    EventResolverService
+    EventResolverService,
+    AmazingTimePickerService
   ],
   declarations: [
     ToolbarComponent,
