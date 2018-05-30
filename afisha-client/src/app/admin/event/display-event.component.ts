@@ -32,14 +32,6 @@ export class DisplayEventComponent implements OnInit {
       action = clickEvent.target.textContent.toLowerCase();
     }
     switch (action) {
-      case 'stop':{
-        this.event.active = false;
-        break;
-      }
-      case 'start':{
-        this.event.active = true;
-        break;
-      }
       case 'edit':{
         this.router.navigate([this.router.url + '/' + PATH.EDIT]);
         break;

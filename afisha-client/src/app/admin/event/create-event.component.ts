@@ -6,6 +6,7 @@ import {PATH} from "../../shared/constants/path.constant";
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import {EventService} from "../../shared/services/event.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {MatSnackBar, MatSnackBarRef, SimpleSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-create-event',
@@ -25,7 +26,8 @@ export class CreateEventComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private timePicker: AmazingTimePickerService,
-    private eventService: EventService) {
+    private eventService: EventService,
+    private snackBar: MatSnackBar) {
     this.createEventForm = formBuilder.group({
       title: ['', [Validators.required]],
       abstract: [''],
@@ -61,9 +63,16 @@ export class CreateEventComponent implements OnInit {
     console.log(newEvent);
     this.eventService.createEvent(newEvent)
       .subscribe(
-        (event: IEvent) => this.event = event,
+        (event: IEvent) => {
+          this.event = event;
+          this.openSnackBar("The event has been created", "Open event")
+            .onAction().subscribe(() => {
+            this.router.navigate([PATH.ADMIN + '/' + PATH.EVENTS + '/' + this.event._id]);
+          });
+        },
         (error: HttpErrorResponse) => console.log(error)
       );
+    this.router.navigate([PATH.ADMIN]);
   }
 
   validateCreateEventForm(): boolean{
@@ -88,5 +97,11 @@ export class CreateEventComponent implements OnInit {
   activate(){
     this.isActive ? this.isActive = false : this.isActive = true;
     console.log(this.isActive);
+  }
+
+  openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
+    return this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

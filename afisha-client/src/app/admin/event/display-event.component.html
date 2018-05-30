@@ -38,8 +38,6 @@
     <div (click)="doActions($event)">
       <button mat-button id="edit">EDIT</button>
       <button mat-button id="close">CLOSE</button>
-      <button mat-button *ngIf="event.active" id="stop">STOP</button>
-      <button mat-button *ngIf="!event.active" id="start">START</button>
     </div>
   </mat-card-actions>
 </mat-card>
