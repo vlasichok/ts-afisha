@@ -20,11 +20,12 @@ export class EventService {
   }
 
   createEvent(event: IEvent){
-    return this.http.post<IEvent>(environment.apiUrl + 'event', event);
+    delete event._id;
+    return this.http.post<IEvent>(environment.apiUrl + 'events', event);
   }
 
   updateEvent(event: IEvent, id: string){
-    return this.http.put<void>(environment.apiUrl + 'event/' + id, event);
+    return this.http.put<void>(environment.apiUrl + 'events/' + id, event);
   }
 
   deleteEvent(id: string){

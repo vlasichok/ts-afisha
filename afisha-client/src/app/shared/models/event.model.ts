@@ -3,15 +3,15 @@ export interface IEvent {
   title: string,
   abstract: string,
   description: string,
-  date: string,
+  date: Date,
   location: string
-  createdAt: string,
-  updatedAt: string,
+  createdAt: Date,
+  updatedAt: Date,
   timeOfEvent: string,
   views: number,
   attends: number,
-  images: [Object],
+  images: Array<any>,
   author: string,
-  comments: [string],
+  comments: Array<any>,
   active: boolean
 }

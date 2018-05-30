@@ -4,6 +4,8 @@ import {IEvent} from "../../shared/models/event.model";
 import {Router} from "@angular/router";
 import {PATH} from "../../shared/constants/path.constant";
 import { AmazingTimePickerService } from 'amazing-time-picker';
+import {EventService} from "../../shared/services/event.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-create-event',
@@ -16,15 +18,21 @@ export class CreateEventComponent implements OnInit {
   minDate = new Date(2018,0,1);
   maxDate = new Date(2030, 7, 1);
   isActive: boolean = false;
+  event: IEvent;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private timePicker: AmazingTimePickerService) {
+  //TODO: Update location picker with city API to upload all possible locations
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private timePicker: AmazingTimePickerService,
+    private eventService: EventService) {
     this.createEventForm = formBuilder.group({
       title: ['', [Validators.required]],
       abstract: [''],
       description: [''],
       date: ['', [Validators.required]],
       location: [''],
-      timeOfEvent: ['']
+      timeOfEvent: ['', [Validators.required]]
     });
   }
 
@@ -32,7 +40,8 @@ export class CreateEventComponent implements OnInit {
   }
 
   createEvent(registerValue: IEvent): void{
-    let newEvent = {
+    let newEvent: IEvent = {
+      _id: "",
       title: "",
       abstract: "",
       description: "",
@@ -43,13 +52,18 @@ export class CreateEventComponent implements OnInit {
       timeOfEvent: "",
       views: 0,
       attends: 0,
-      images: [{}],
-      author: "current author",
-      comments: [""],
+      images: [""],
+      author: "5b0bf30b9a962e08c5ee6171",
+      comments: [],
       active: this.isActive
     };
     Object.assign(newEvent, registerValue);
     console.log(newEvent);
+    this.eventService.createEvent(newEvent)
+      .subscribe(
+        (event: IEvent) => this.event = event,
+        (error: HttpErrorResponse) => console.log(error)
+      );
   }
 
   validateCreateEventForm(): boolean{

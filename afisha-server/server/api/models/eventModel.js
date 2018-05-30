@@ -35,7 +35,7 @@ const EventSchema = new mongoose.Schema({
         type: Number
     },
     images: {
-        type: [Buffer]
+        type: Array
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,

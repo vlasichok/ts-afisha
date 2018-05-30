@@ -34,7 +34,7 @@ const eventController = {
     createEvent: (req, res) => {
         Event.create(req.body)
             .then((event) => {
-                return res.send(201).json(event);
+                return res.status(201).json(event);
             }, (error) => {
                 return res.status(500).json(ErrorBuilder(ERROR_LIST.INTERNAL_SERVER_ERROR, error));
             });

@@ -17,7 +17,7 @@ const dataSeed = () => {
                     'views': 129,
                     'location': 'Odessa',
                     'attends': 123000,
-                    'images': 123123123,
+                    'images': [],
                     'author': new mongoose.Types.ObjectId,
                     'comments': [],
                     'active': true
@@ -33,7 +33,7 @@ const dataSeed = () => {
                     'timeOfEvent': '9 pm',
                     'views': 564,
                     'attends': 15000,
-                    'images': 1221212121,
+                    'images': [],
                     'author': new mongoose.Types.ObjectId,
                     'comments': [],
                     'active': true
@@ -49,7 +49,7 @@ const dataSeed = () => {
                     'timeOfEvent': '10 pm',
                     'views': 1564,
                     'attends': 21001,
-                    'images': 1221212121,
+                    'images': [],
                     'author': new mongoose.Types.ObjectId,
                     'comments': [],
                     'active': true
@@ -65,7 +65,7 @@ const dataSeed = () => {
                     'timeOfEvent': '10 pm',
                     'views': 154,
                     'attends': 2123,
-                    'images': 1221212121,
+                    'images': [],
                     'author': new mongoose.Types.ObjectId,
                     'comments': [],
                     'active': true
@@ -81,7 +81,7 @@ const dataSeed = () => {
                     'timeOfEvent': '10 pm',
                     'views': 154,
                     'attends': 215,
-                    'images': 1221212121,
+                    'images': [],
                     'author': new mongoose.Types.ObjectId,
                     'comments': [],
                     'active': true
@@ -97,7 +97,7 @@ const dataSeed = () => {
                     'timeOfEvent': '10 pm',
                     'views': 154111,
                     'attends': 2100,
-                    'images': 1221212121,
+                    'images': [],
                     'author': new mongoose.Types.ObjectId,
                     'comments': [],
                     'active': false
