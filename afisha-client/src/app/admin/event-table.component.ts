@@ -36,7 +36,7 @@ export class EventTableComponent implements OnInit {
     this.dataSource.paginator = mp;
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string): void {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;

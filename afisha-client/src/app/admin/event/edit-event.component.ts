@@ -60,7 +60,6 @@ export class EditEventComponent implements OnInit {
 
     updatedEvent.updatedAt = new Date;
     Object.assign(updatedEvent, formValue);
-    console.log(updatedEvent);
     this.eventService.updateEvent(updatedEvent, this.eventId)
       .subscribe(
         () => {
@@ -108,7 +107,7 @@ export class EditEventComponent implements OnInit {
     });
   }
 
-  isEventChanged(newEvent, oldEvent){
+  isEventChanged(newEvent: object, oldEvent: object): boolean{
     for(let prop in newEvent) {
       if (!(newEvent[prop] === oldEvent[prop])) {
         return true;

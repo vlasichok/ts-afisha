@@ -15,7 +15,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToSection(event){
+  goToSection(event): void{
     if(!event){
       return;
     }
