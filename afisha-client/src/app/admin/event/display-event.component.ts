@@ -21,7 +21,6 @@ export class DisplayEventComponent implements OnInit {
   }
 
   doActions(clickEvent): void{
-    console.log("event ",clickEvent.target.id || clickEvent.target.textContent);
     if(!clickEvent.target.id && !clickEvent.target.textContent) {
       return;
     }

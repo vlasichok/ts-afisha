@@ -10,5 +10,7 @@ export const PATH = {
   SEARCH: 'search',
   ABOUT: 'about',
   CREATE: 'create',
-  EDIT: 'edit'
+  EDIT: 'edit',
+  PROFILE: 'profile',
+  HELP: 'help'
 };

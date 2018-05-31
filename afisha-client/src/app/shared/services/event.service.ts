@@ -25,6 +25,7 @@ export class EventService {
   }
 
   updateEvent(event: IEvent, id: string){
+    delete event._id;
     return this.http.put<void>(environment.apiUrl + 'events/' + id, event);
   }
 

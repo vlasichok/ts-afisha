@@ -41,7 +41,7 @@ export class CreateEventComponent implements OnInit {
   ngOnInit() {
   }
 
-  createEvent(registerValue: IEvent): void{
+  createEvent(formValue: IEvent): void{
     let newEvent: IEvent = {
       _id: "",
       title: "",
@@ -59,8 +59,7 @@ export class CreateEventComponent implements OnInit {
       comments: [],
       active: this.isActive
     };
-    Object.assign(newEvent, registerValue);
-    console.log(newEvent);
+    Object.assign(newEvent, formValue);
     this.eventService.createEvent(newEvent)
       .subscribe(
         (event: IEvent) => {
@@ -87,21 +86,21 @@ export class CreateEventComponent implements OnInit {
     this.router.navigate([PATH.ADMIN]);
   }
 
-  openTimePicker() {
+  openTimePicker(): void{
    const amazingTimePicker = this.timePicker.open();
     amazingTimePicker.afterClose().subscribe(time => {
       this.createEventForm.controls.timeOfEvent.setValue(time);
     });
   }
 
-  activate(){
+  activate(): void{
     this.isActive ? this.isActive = false : this.isActive = true;
     console.log(this.isActive);
   }
 
   openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
     return this.snackBar.open(message, action, {
-      duration: 2000,
+      duration: 5000,
     });
   }
 }

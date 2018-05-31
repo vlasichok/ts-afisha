@@ -13,7 +13,9 @@ export const adminRoutes = [
       { path: PATH.EVENTS, component: EventTableComponent },
       { path: PATH.EVENTS + '/' + PATH.CREATE, component: CreateEventComponent},
       { path: PATH.EVENTS_ID, component: DisplayEventComponent, canActivate: [GuardEventRouteService], resolve: {event: EventResolverService} },
-      { path: PATH.EVENTS_ID + '/' + PATH.EDIT, component: EditEventComponent}
+      { path: PATH.EVENTS_ID + '/' + PATH.EDIT, component: EditEventComponent, canActivate: [GuardEventRouteService], resolve: {event: EventResolverService} },
+      { path: PATH.PROFILE, component: EditEventComponent},
+      { path: PATH.HELP, component: EditEventComponent},
     ]},
   { path: '*', redirectTo: PATH.ROOT }
 ];
