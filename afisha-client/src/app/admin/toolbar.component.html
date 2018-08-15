@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+  <button class="sidenav-toggle" mat-button (click)="toggleSidenav.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="event-spacer"></span>
+  <mat-menu #appMenu="matMenu">
+    <div (click)="goToSection($event)">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item>Help</button>
+      <button mat-menu-item>Logout</button>
+    </div>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</mat-toolbar>

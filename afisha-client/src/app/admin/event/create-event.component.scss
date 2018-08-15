@@ -1,0 +1,25 @@
+.event-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-container > * {
+  width: 100%;
+}
+
+.event-container form {
+  margin-bottom: 20px;
+}
+
+.event-container form > * {
+  margin: 5px 0;
+}
+
+.event-container .mat-radio-button {
+  margin: 0 5px;
+}
+
+.time-picker-field {
+  width: 80%;
+  font-size: 110%;
+}

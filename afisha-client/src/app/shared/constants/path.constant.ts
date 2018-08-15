@@ -3,9 +3,14 @@ export const PATH = {
   EVENTS_ID: 'events/:id',
   ERROR: '404',
   USER: 'user',
+  ADMIN: 'admin',
   ROOT: '',
   LOGIN: 'login',
   REGISTER: 'register',
   SEARCH: 'search',
-  ABOUT: 'about'
+  ABOUT: 'about',
+  CREATE: 'create',
+  EDIT: 'edit',
+  PROFILE: 'profile',
+  HELP: 'help'
 };
